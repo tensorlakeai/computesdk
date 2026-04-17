@@ -624,7 +624,7 @@ importers:
         version: link:../provider
       '@daytonaio/sdk':
         specifier: ^0.143.0
-        version: 0.143.0(ws@8.18.3(bufferutil@4.1.0)(utf-8-validate@6.0.6))
+        version: 0.143.0(ws@8.20.0(bufferutil@4.1.0)(utf-8-validate@6.0.6))
       computesdk:
         specifier: workspace:*
         version: link:../computesdk
@@ -1377,6 +1377,9 @@ importers:
       computesdk:
         specifier: workspace:*
         version: link:../computesdk
+      tensorlake:
+        specifier: ^0.4.47
+        version: 0.4.47(bufferutil@4.1.0)(utf-8-validate@6.0.6)
     devDependencies:
       '@computesdk/test-utils':
         specifier: workspace:*
@@ -7388,6 +7391,11 @@ packages:
     resolution: {integrity: sha512-BTLcK0xsDh2+PUe9F6c2TlRp4zOOBMTkoQHQIWSIzI0R7KG46uEwq4OPk2W7bZcprBMsuaeFsqwYr7pjh6CuHg==}
     engines: {node: '>=18'}
 
+  tensorlake@0.4.47:
+    resolution: {integrity: sha512-Vd0MQzdJ7G4C+K2y8+KifOB9P7j1INRLdA/8oWa9Ck8ti3X2EKJJ0C6jFwYwB/pmkJ9AdFu1tFjep7Snk3L6YA==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
+
   term-canvas@0.0.5:
     resolution: {integrity: sha512-eZ3rIWi5yLnKiUcsW8P79fKyooaLmyLWAGqBhFspqMxRNUiB4GmHHk5AzQ4LxvFbJILaXqQZLwbbATLOhCFwkw==}
 
@@ -7856,6 +7864,18 @@ packages:
 
   ws@8.18.3:
     resolution: {integrity: sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
+  ws@8.20.0:
+    resolution: {integrity: sha512-sAt8BhgNbzCtgGbt2OxmpuryO63ZoDk/sqaB/znQm94T4fCEsy/yV+7CdC1kJhOU9lboAEU7R3kquuycDoibVA==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
@@ -9881,7 +9901,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@daytonaio/sdk@0.143.0(ws@8.18.3(bufferutil@4.1.0)(utf-8-validate@6.0.6))':
+  '@daytonaio/sdk@0.143.0(ws@8.20.0(bufferutil@4.1.0)(utf-8-validate@6.0.6))':
     dependencies:
       '@aws-sdk/client-s3': 3.859.0
       '@aws-sdk/lib-storage': 3.859.0(@aws-sdk/client-s3@3.859.0)
@@ -9902,7 +9922,7 @@ snapshots:
       expand-tilde: 2.0.2
       fast-glob: 3.3.3
       form-data: 4.0.4
-      isomorphic-ws: 5.0.0(ws@8.18.3(bufferutil@4.1.0)(utf-8-validate@6.0.6))
+      isomorphic-ws: 5.0.0(ws@8.20.0(bufferutil@4.1.0)(utf-8-validate@6.0.6))
       pathe: 2.0.3
       shell-quote: 1.8.3
       tar: 7.5.9
@@ -14075,9 +14095,9 @@ snapshots:
 
   isomorphic-timers-promises@1.0.1: {}
 
-  isomorphic-ws@5.0.0(ws@8.18.3(bufferutil@4.1.0)(utf-8-validate@6.0.6)):
+  isomorphic-ws@5.0.0(ws@8.20.0(bufferutil@4.1.0)(utf-8-validate@6.0.6)):
     dependencies:
-      ws: 8.18.3(bufferutil@4.1.0)(utf-8-validate@6.0.6)
+      ws: 8.20.0(bufferutil@4.1.0)(utf-8-validate@6.0.6)
 
   istanbul-lib-coverage@3.2.2: {}
 
@@ -15617,6 +15637,13 @@ snapshots:
       minizlib: 3.1.0
       yallist: 5.0.0
 
+  tensorlake@0.4.47(bufferutil@4.1.0)(utf-8-validate@6.0.6):
+    dependencies:
+      ws: 8.20.0(bufferutil@4.1.0)(utf-8-validate@6.0.6)
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
   term-canvas@0.0.5: {}
 
   term-size@2.2.1: {}
@@ -16093,6 +16120,11 @@ snapshots:
       utf-8-validate: 6.0.6
 
   ws@8.18.3(bufferutil@4.1.0)(utf-8-validate@6.0.6):
+    optionalDependencies:
+      bufferutil: 4.1.0
+      utf-8-validate: 6.0.6
+
+  ws@8.20.0(bufferutil@4.1.0)(utf-8-validate@6.0.6):
     optionalDependencies:
       bufferutil: 4.1.0
       utf-8-validate: 6.0.6
