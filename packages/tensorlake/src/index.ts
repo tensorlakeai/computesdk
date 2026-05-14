@@ -18,8 +18,6 @@ import type {
   RunCommandOptions,
 } from "@computesdk/provider";
 
-const DEFAULT_IMAGE = "ubuntu-minimal";
-
 export interface TensorlakeConfig {
   /** Tensorlake API key — falls back to TENSORLAKE_API_KEY environment variable */
   apiKey?: string;
@@ -72,24 +70,28 @@ export const tensorlake = defineProvider<
         options?: CreateSandboxOptions
       ) => {
         const { apiKey, apiUrl } = resolveAuth(config);
-        const image = options?.image || config.image || DEFAULT_IMAGE;
+        const image = options?.image || config.image;
         const timeoutMs = options?.timeout ?? config.timeout;
         const timeoutSecs = timeoutMs ? Math.ceil(timeoutMs / 1000) : undefined;
 
+        const params = {
+          ...(image && { image }),
+          ...(timeoutSecs && { timeoutSecs }),
+          ...(options?.cpus && { cpus: options.cpus }),
+          ...(options?.memoryMb && { memoryMb: options.memoryMb }),
+          ...(options?.diskMb && {
+            diskMb: options.diskMb,
+          }),
+          ...(options?.name && { name: options.name }),
+          ...(options?.snapshotId && { snapshotId: options.snapshotId }),
+          proxyUrl: config.proxyUrl,
+          apiKey,
+          apiUrl,
+        };
+
         try {
           const startTime = Date.now();
-          const instance = await Sandbox.create({
-            image,
-            cpus: 1,
-            memoryMb: 1024,
-            ephemeralDiskMb: 2048,
-            ...(timeoutSecs && { timeoutSecs }),
-            ...(options?.name && { name: options.name }),
-            ...(options?.snapshotId && { snapshotId: options.snapshotId }),
-            proxyUrl: config.proxyUrl,
-            apiKey,
-            apiUrl,
-          });
+          const instance = await Sandbox.create(params);
 
           const sandbox: TensorlakeSandboxContext = {
             config,
