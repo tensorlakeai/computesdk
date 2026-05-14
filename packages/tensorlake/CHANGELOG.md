@@ -1,5 +1,11 @@
 # @computesdk/tensorlake
 
+## 0.1.2
+
+### Patch Changes
+
+- a1405358: Remove hardcoded default values for `image`, `cpu`, `memoryMb`. Use the new `diskMb` option to set the ephemeral disk size.
+
 ## 0.1.1
 
 ### Patch Changes
