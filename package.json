@@ -15,9 +15,9 @@
     "changeset": "changeset",
     "version": "changeset version && pnpm install --no-frozen-lockfile",
     "release": "pnpm run build && changeset publish",
-    "prepare": "husky",
     "workbench": "node packages/workbench/dist/bin/workbench.js",
-    "workbench:ts": "pnpm --filter @computesdk/workbench run dev:ts"
+    "workbench:ts": "pnpm --filter @computesdk/workbench run dev:ts",
+    "setup:git-hooks": "husky"
   },
   "keywords": [
     "sandbox",
@@ -47,5 +47,5 @@
     "node": ">=18.0.0",
     "pnpm": ">=9.0.0"
   },
-  "packageManager": "pnpm@9.15.0"
+  "packageManager": "pnpm@11.28.5"
 }

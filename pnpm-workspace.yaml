@@ -1,3 +1,11 @@
 packages:
   - 'packages/*'
   - 'examples/*'
+minimumReleaseAge: 1440
+minimumReleaseAgeStrict: true
+blockExoticSubdeps: true
+strictDepBuilds: true
+ignoreScripts: true
+minimumReleaseAgeIgnoreMissingTime: false
+trustLockfile: false
+optimisticRepeatInstall: false
